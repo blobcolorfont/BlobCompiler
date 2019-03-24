@@ -24,8 +24,6 @@ WINDOWS_PACKAGE := build/$(FONT_PREFIX)-Win-$(VERSION)
 SVG_BLOB := BlobStorage/svgs/all
 # Will be used later
 SVG_TWEMOJI := assets/twemoji-svg-empty
-# B&W only glyphs which will not be processed. Currently empty.
-SVG_EXTRA_BW := assets/svg-bw
 
 # Create the lists of traced and color SVGs
 SVG_FILES := $(wildcard $(SVG_BLOB)/*.svg) $(wildcard $(SVG_TWEMOJI)/*.svg)
@@ -88,14 +86,11 @@ windows-package: $(REGULAR_FONT)
 	7z a -tzip -mx=9 $(WINDOWS_PACKAGE).zip ./$(WINDOWS_PACKAGE)
 
 # Build both versions of the fonts
-$(REGULAR_FONT): $(SVG_BW_FILES) $(SVG_COLOR_FILES) copy-extra
+$(REGULAR_FONT): $(SVG_BW_FILES) $(SVG_COLOR_FILES)
 	$(SCFBUILD) -c scfbuild.yml -o $(REGULAR_FONT) --font-version="$(VERSION)"
 
-$(MACOS_FONT): $(SVG_BW_FILES) $(SVG_COLOR_FILES) copy-extra
+$(MACOS_FONT): $(SVG_BW_FILES) $(SVG_COLOR_FILES)
 	$(SCFBUILD) -c scfbuild-macos.yml -o $(MACOS_FONT) --font-version="$(VERSION)"
-
-copy-extra: build/svg-bw
-	cp $(SVG_EXTRA_BW)/* build/svg-bw/
 
 # Create black SVG traces of the color SVGs to use as glyphs.
 # 1. Make the SVG into a PNG with Inkscape
