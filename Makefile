@@ -8,38 +8,38 @@ TMP := /dev/shm
 # Where to find scfbuild?
 SCFBUILD := SCFBuild/bin/scfbuild
 
-VERSION := 11.2.0
-FONT_PREFIX := TwitterColorEmoji-SVGinOT
+VERSION := 0.1.0
+FONT_PREFIX := BlobColorFont-SVG
 REGULAR_FONT := build/$(FONT_PREFIX).ttf
 REGULAR_PACKAGE := build/$(FONT_PREFIX)-$(VERSION)
-OSX_FONT := build/$(FONT_PREFIX)-OSX.ttf
-OSX_PACKAGE := build/$(FONT_PREFIX)-OSX-$(VERSION)
+MACOS_FONT := build/$(FONT_PREFIX)-macOS.ttf
+MACOS_PACKAGE := build/$(FONT_PREFIX)-macOS-$(VERSION)
 LINUX_PACKAGE := $(FONT_PREFIX)-Linux-$(VERSION)
-DEB_PACKAGE := fonts-twemoji-svginot
+DEB_PACKAGE := blobcolorfont
 WINDOWS_TOOLS := windows
 WINDOWS_PACKAGE := build/$(FONT_PREFIX)-Win-$(VERSION)
 
 # There are two SVG source directories to keep the assets separate
 # from the additions
-SVG_TWEMOJI := assets/twemoji-svg
-# Currently empty
-SVG_EXTRA := assets/svg
-# B&W only glyphs which will not be processed.
+SVG_BLOB := BlobStorage/svgs/all
+# Will be used later
+SVG_TWEMOJI := assets/twemoji-svg-empty
+# B&W only glyphs which will not be processed. Currently empty.
 SVG_EXTRA_BW := assets/svg-bw
 
 # Create the lists of traced and color SVGs
-SVG_FILES := $(wildcard $(SVG_TWEMOJI)/*.svg) $(wildcard $(SVG_EXTRA)/*.svg)
-SVG_STAGE_FILES := $(patsubst $(SVG_TWEMOJI)/%.svg, build/stage/%.svg, $(SVG_FILES))
-SVG_STAGE_FILES := $(patsubst $(SVG_EXTRA)/%.svg, build/stage/%.svg, $(SVG_STAGE_FILES))
+SVG_FILES := $(wildcard $(SVG_BLOB)/*.svg) $(wildcard $(SVG_TWEMOJI)/*.svg)
+SVG_STAGE_FILES := $(patsubst $(SVG_BLOB)/%.svg, build/stage/%.svg, $(SVG_FILES))
+SVG_STAGE_FILES := $(patsubst $(SVG_TWEMOJI)/%.svg, build/stage/%.svg, $(SVG_STAGE_FILES))
 SVG_BW_FILES := $(patsubst build/stage/%.svg, build/svg-bw/%.svg, $(SVG_STAGE_FILES))
 SVG_COLOR_FILES := $(patsubst build/stage/%.svg, build/svg-color/%.svg, $(SVG_STAGE_FILES))
 
-.PHONY: all package regular-package linux-package osx-package windows-package copy-extra clean
+.PHONY: all package regular-package linux-package macos-package windows-package copy-extra clean
 
-all: $(REGULAR_FONT) $(OSX_FONT)
+all: $(REGULAR_FONT) $(MACOS_FONT)
 
 # Create the operating system specific packages
-package: regular-package linux-package deb-package osx-package windows-package
+package: regular-package linux-package deb-package macos-package windows-package
 
 regular-package: $(REGULAR_FONT)
 	rm -f $(REGULAR_PACKAGE).zip
@@ -68,14 +68,14 @@ deb-package: linux-package
 	#debuild -S
 	#dput ppa:eosrei/fonts $(DEB_PACKAGE)_$(VERSION).changes
 
-osx-package: $(OSX_FONT)
-	rm -f $(OSX_PACKAGE).zip
-	rm -rf $(OSX_PACKAGE)
-	mkdir $(OSX_PACKAGE)
-	cp $(OSX_FONT) $(OSX_PACKAGE)
-	cp LICENSE* $(OSX_PACKAGE)
-	cp README.md $(OSX_PACKAGE)
-	7z a -tzip -mx=9 $(OSX_PACKAGE).zip ./$(OSX_PACKAGE)
+macos-package: $(MACOS_FONT)
+	rm -f $(MACOS_PACKAGE).zip
+	rm -rf $(MACOS_PACKAGE)
+	mkdir $(MACOS_PACKAGE)
+	cp $(MACOS_FONT) $(MACOS_PACKAGE)
+	cp LICENSE* $(MACOS_PACKAGE)
+	cp README.md $(MACOS_PACKAGE)
+	7z a -tzip -mx=9 $(MACOS_PACKAGE).zip ./$(MACOS_PACKAGE)
 
 windows-package: $(REGULAR_FONT)
 	rm -f $(WINDOWS_PACKAGE).zip
@@ -91,14 +91,14 @@ windows-package: $(REGULAR_FONT)
 $(REGULAR_FONT): $(SVG_BW_FILES) $(SVG_COLOR_FILES) copy-extra
 	$(SCFBUILD) -c scfbuild.yml -o $(REGULAR_FONT) --font-version="$(VERSION)"
 
-$(OSX_FONT): $(SVG_BW_FILES) $(SVG_COLOR_FILES) copy-extra
-	$(SCFBUILD) -c scfbuild-osx.yml -o $(OSX_FONT) --font-version="$(VERSION)"
+$(MACOS_FONT): $(SVG_BW_FILES) $(SVG_COLOR_FILES) copy-extra
+	$(SCFBUILD) -c scfbuild-macos.yml -o $(MACOS_FONT) --font-version="$(VERSION)"
 
 copy-extra: build/svg-bw
 	cp $(SVG_EXTRA_BW)/* build/svg-bw/
 
 # Create black SVG traces of the color SVGs to use as glyphs.
-# 1. Make the Twemoji SVG into a PNG with Inkscape
+# 1. Make the SVG into a PNG with Inkscape
 # 2. Make the PNG into a BMP with ImageMagick and add margin by increasing the
 #    canvas size to allow the outer "stroke" to fit.
 # 3. Make the BMP into a Edge Detected PGM with mkbitmap
@@ -117,7 +117,7 @@ build/svg-color/%.svg: build/staging/%.svg | build/svg-color
 	svgo -i $< -o $@
 
 # Copy the files from multiple directories into one source directory
-build/staging/%.svg: $(SVG_TWEMOJI)/%.svg | build/staging
+build/staging/%.svg: $(SVG_BLOB)/%.svg | build/staging
 	cp $< $@
 
 build/staging/%.svg: $(SVG_MORE)/%.svg | build/staging
@@ -138,4 +138,3 @@ build/svg-color: | build
 
 clean:
 	rm -rf build
-

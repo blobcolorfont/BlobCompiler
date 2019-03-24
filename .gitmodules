@@ -1,0 +1,3 @@
+[submodule "BlobStorage"]
+	path = BlobStorage
+	url = https://github.com/blobcolorfont/BlobStorage

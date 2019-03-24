@@ -1,5 +1,5 @@
 # SCFBuild configuration file for Twitter Color Emoji
-output_file: build/TwitterEmojiColor-SVGinOT.ttf
+output_file: build/BlobColorFont-SVG.ttf
 verbose: False
 glyph_svg_dir: build/svg-bw
 color_svg_dir: build/svg-color
@@ -15,23 +15,23 @@ color_transform: translate(0 -6.75)
 width_space: 561
 table_name:
   copyright: >
-    Copyright 2016 Brad Erickson CC-BY-4.0
+    Copyright 2018 Brad Erickson CC-BY-4.0
     Copyright 2016 Twitter, Inc. CC-BY-4.0
   family: Twitter Color Emoji
   # Subfamily is also called Style or Weight. Often set to: Regular
   subfamily: Regular
-  unique_id: Twitter Color Emoji SVGinOT eosrei.net
-  full_name: Twitter Color Emoji SVGinOT
+  unique_id: Blob Color Font SVG
+  full_name: Blob Color Font SVG
   #version:
   # No spaces in PostScript Names
-  postscript_name: TwitterColorEmojiSVGinOT
+  postscript_name: BlobColorFontSVG
   #trademark:
-  manufacturer: eosrei.net
-  designer: Twitter, Inc.
+  manufacturer: joaoh1
+  designer: joaoh1
   description: >
-    A SVGinOT color emoji font using the Twitter Emoji for Everyone set:
-    https://github.com/eosrei/twemoji-color-font
-  url_vendor: https://github.com/eosrei/twemoji-color-font
-  url_designer: https://github.com/twitter/twemoji
+    A SVGinOT color emoji font using the Blob Color Font set:
+    https://github.com/blobcolorfont/
+  url_vendor: https://github.com/blobcolorfont/BlobCompiler
+  url_designer: https://github.com/blobcolorfont/BlobStorage
   license: Creative Commons Attribution 4.0 International
   url_license: http://creativecommons.org/licenses/by/4.0/
