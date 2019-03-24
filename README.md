@@ -1,33 +1,28 @@
-# Twitter Color Emoji SVGinOT Font
-A color and B&W emoji SVGinOT font built from the
-[Twitter Emoji for Everyone][1] artwork with support for [ZWJ][2],
-[skin tone diversity][3] and [country flags][4].
+# Blob Color Font - SVGinOT Version
+This is a SVGinOT emoji font that uses the
+[Blob Color Font][1] artwork, there are plans
+for supporting [ZWJ][2], [skin tone diversity][3] and [country flags][4], but currently,
+there's only smileys.
 
 The font works in all operating systems, but will *currently* only show color
-emoji in Firefox, Thunderbird, Photoshop CC 2017, and Windows Edge V38.14393+.
+emoji in Firefox, Thunderbird, Photoshop CC, and Microsoft Edge.
 This is not a limitation of the font, but of the operating systems and
-applications. Regular B&W outline emoji are included for backwards/fallback
-compatibility.
+applications. Regular B&W outline emoji are included for systems who doesn't
+support SVGinOT.
 
-[1]: https://github.com/twitter/twemoji
+[1]: https://github.com/blobcolorfont/BlobStorage
 [2]: http://unicode.org/emoji/charts/emoji-zwj-sequences.html
 [3]: http://www.unicode.org/reports/tr51/#Diversity
 [4]: http://www.unicode.org/reports/tr51/#Flags
 
 ## Table of Contents
 
-* [Examples](#examples)
 * [What is SVGinOT?](#what-is-svginot)
 * [Install on Linux](#install-on-linux)
 * [Install on OS X](#install-on-os-x)
 * [Install on Windows](#install-on-windows)
 * [Building](#building)
 * [License](#license)
-
-## Examples
-
-Demo in Firefox on Linux.
-![Firefox color emoji in Linux](images/twemoji-font-demo.png?raw=true)
 
 ## What is SVGinOT?
 *SVG in Open Type* is a standard by Adobe and Mozilla for color OpenType

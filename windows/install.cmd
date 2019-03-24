@@ -6,17 +6,17 @@ SETLOCAL
 
 SET MS_EMOJI_FONT_PATH="%SystemRoot%\Fonts\seguiemj.ttf"
 SET MS_FONT_PATH="%SystemRoot%\Fonts\seguisym.ttf"
-SET EMOJI_FONT_PATH="%CD%\TwitterColorEmoji-SVGinOT.ttf"
-SET FINAL_EMJ_FONT_PATH_NO_QUOTES=%CD%\Segoe UI Emoji with Twemoji.ttf
+SET EMOJI_FONT_PATH="%CD%\BlobColorFont-SVG.ttf"
+SET FINAL_EMJ_FONT_PATH_NO_QUOTES=%CD%\Segoe UI Emoji with BlobColorFont.ttf
 SET FINAL_EMJ_FONT_PATH="%FINAL_EMJ_FONT_PATH_NO_QUOTES%"
-SET FINAL_FONT_PATH_NO_QUOTES=%CD%\Segoe UI Symbol with Twemoji.ttf
+SET FINAL_FONT_PATH_NO_QUOTES=%CD%\Segoe UI Symbol with BlobColorFont.ttf
 SET FINAL_FONT_PATH="%FINAL_FONT_PATH_NO_QUOTES%"
 
 ECHO Checking if Segoe UI Emoji is installed
 
 REM Windows 8 uses Segoe UI Emoji in addition to Symbol
 REM Windows 7 only uses Segoe UI Symbol
-REM We have to replace _both_ 
+REM We have to replace _both_
 ECHO Checking if Segoe UI Symbol is installed.
 
 IF NOT EXIST %MS_FONT_PATH% (
@@ -55,15 +55,15 @@ WHERE ttx /q || (
 
 PUSHD %TEMP%
 IF EXIST %MS_EMOJI_FONT_PATH% (
-    ECHO Creating new Segoe UI Emoji font from Twitter Color Emoji
+    ECHO Creating new Segoe UI Emoji font from Blob Color Font
     ttx -t "name" -o "emjname.ttx" %MS_EMOJI_FONT_PATH% || GOTO :ERROR
     ttx -o %FINAL_EMJ_FONT_PATH% -m %EMOJI_FONT_PATH% "emjname.ttx" || GOTO :ERROR
     DEL "emjname.ttx"
 )
 
-ECHO Creating new Segoe UI Symbol font from Twitter Color Emoji
-REM Merge Segoe UI Symbol into TwitterColorEmoji, this keeps 
-REM TwitterColorEmoji's glyph ids intact for the 'SVG ' table data
+ECHO Creating new Segoe UI Symbol font from Blob Color Font
+REM Merge Segoe UI Symbol into BlobColorFont, this keeps
+REM BlobColorFont's glyph ids intact for the 'SVG ' table data
 pyftmerge %EMOJI_FONT_PATH% %MS_FONT_PATH%
 ECHO Dumping SVG emojis
 ttx -t "SVG " -o "svg.ttx" %EMOJI_FONT_PATH% || GOTO :ERROR
