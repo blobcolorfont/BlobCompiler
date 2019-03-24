@@ -15,9 +15,10 @@ color_transform: translate(0 -6.75)
 width_space: 561
 table_name:
   copyright: >
-    Copyright 2018 Brad Erickson CC-BY-4.0
+    Copyright 2019 joaoh1 Apache-2.0
+    Copyright 2018 Brad Erickson CC-BY-4.0/MIT
     Copyright 2016 Twitter, Inc. CC-BY-4.0
-  family: Twitter Color Emoji
+  family: Blob Color Font
   # Subfamily is also called Style or Weight. Often set to: Regular
   subfamily: Regular
   unique_id: Blob Color Font SVG
