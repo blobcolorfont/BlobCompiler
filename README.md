@@ -206,9 +206,9 @@ devscripts python-fontforge python-pip python-yaml imagemagick \
 git make debhelper build-essential
 sudo npm install -g svgo
 sudo pip install fonttools
-git clone https://github.com/eosrei/twemoji-color-font.git
-cd twemoji-color-font
-git clone https://github.com/13rac1/scfbuild.git SCFBuild
+git clone --recurse-submodules https://github.com/blobcolorfont/BlobCompiler.git
+cd BlobCompiler
+git clone https://github.com/blobcolorfont/BlobStorage.git
 make -j 4
 ```
 
