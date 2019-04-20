@@ -208,6 +208,7 @@ sudo npm install -g svgo
 sudo pip install fonttools
 git clone --recurse-submodules https://github.com/blobcolorfont/BlobCompiler.git
 cd BlobCompiler
+git clone https://github.com/13rac1/scfbuild.git SCFBuild
 git clone https://github.com/blobcolorfont/BlobStorage.git
 make -j 4
 ```
