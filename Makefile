@@ -6,7 +6,7 @@ TMP := /dev/shm
 #TMP := /tmp
 
 # Where to find scfbuild?
-SCFBUILD := SCFBuild/bin/scfbuild
+SCFBUILD := scfbuild/bin/scfbuild
 
 VERSION := 0.1.0
 FONT_PREFIX := BlobColorFont-SVG
@@ -21,7 +21,7 @@ WINDOWS_PACKAGE := build/$(FONT_PREFIX)-Win-$(VERSION)
 
 # There are two SVG source directories to keep the assets separate
 # from the additions
-SVG_BLOB := BlobStorage/svgs/all
+SVG_BLOB := BlobStorage/svgs
 # Will be used later
 SVG_TWEMOJI := assets/twemoji-svg-empty
 
@@ -106,10 +106,6 @@ build/svg-bw/%.svg: build/staging/%.svg | build/svg-bw
 	rm $(TMP)/$(*F).bmp
 	potrace --flat -s --height 2048pt --width 2048pt -o $@ $(TMP)/$(*F).pgm
 	rm $(TMP)/$(*F).pgm
-
-# Optimize/clean the color SVG files
-build/svg-color/%.svg: build/staging/%.svg | build/svg-color
-	svgo -i $< -o $@
 
 # Copy the files from multiple directories into one source directory
 build/staging/%.svg: $(SVG_BLOB)/%.svg | build/staging

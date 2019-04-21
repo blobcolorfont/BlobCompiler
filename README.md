@@ -1,8 +1,8 @@
 # Blob Color Font - SVGinOT Version
 This is a SVGinOT emoji font that uses the
-[Blob Color Font][1] artwork, there are plans
-for supporting [ZWJ][2], [skin tone diversity][3] and [country flags][4], but currently,
-there's only smileys.
+[Blob Color Font][1] artwork, with support
+for [ZWJ][2] and [skin tone diversity][3],
+there are plans for [country flags][4].
 
 The font works in all operating systems, but will *currently* only show color
 emoji in Firefox, Thunderbird, Photoshop CC, and Microsoft Edge.
@@ -192,7 +192,6 @@ Requires:
 * potrace/mkbitmap
 * FontTools 3.0+
 * FontForge 20160405+
-* SVGO
 * make
 * [SCFBuild][13] *(Created for this project!)*
 
@@ -201,14 +200,13 @@ Requires:
 Setup and build on Ubuntu 18.04 LTS:
 ```sh
 sudo apt-get update
-sudo apt-get install inkscape potrace npm nodejs fontforge \
-devscripts python-fontforge python-pip python-yaml imagemagick \
+sudo apt-get install inkscape potrace fontforge devscripts \
+python-fontforge python-pip python-yaml imagemagick \
 git make debhelper build-essential
-sudo npm install -g svgo
 sudo pip install fonttools
 git clone --recurse-submodules https://github.com/blobcolorfont/BlobCompiler.git
 cd BlobCompiler
-git clone https://github.com/13rac1/scfbuild.git SCFBuild
+git clone https://github.com/13rac1/scfbuild.git
 git clone https://github.com/blobcolorfont/BlobStorage.git
 make -j 4
 ```
