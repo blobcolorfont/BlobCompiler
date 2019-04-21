@@ -107,6 +107,9 @@ build/svg-bw/%.svg: build/staging/%.svg | build/svg-bw
 	potrace --flat -s --height 2048pt --width 2048pt -o $@ $(TMP)/$(*F).pgm
 	rm $(TMP)/$(*F).pgm
 
+build/svg-color/%.svg: build/staging/%.svg | build/svg-color
+	cp $< $@
+
 # Copy the files from multiple directories into one source directory
 build/staging/%.svg: $(SVG_BLOB)/%.svg | build/staging
 	cp $< $@
