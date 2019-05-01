@@ -11,9 +11,9 @@ applications. Regular B&W outline emoji are included for systems who doesn't
 support SVGinOT.
 
 [1]: https://github.com/blobcolorfont/BlobStorage
-[2]: http://unicode.org/emoji/charts/emoji-zwj-sequences.html
-[3]: http://www.unicode.org/reports/tr51/#Diversity
-[4]: http://www.unicode.org/reports/tr51/#Flags
+[2]: https://unicode.org/emoji/charts/emoji-zwj-sequences.html
+[3]: https://www.unicode.org/reports/tr51/#Diversity
+[4]: https://www.unicode.org/reports/tr51/#Flags
 
 ## Table of Contents
 
@@ -33,8 +33,8 @@ in the [SVGinOT proposal][6] and the [OpenType SVG table specifications][7].
 SVGinOT Font demos (Firefox only):
 
 * https://hacks.mozilla.org/2014/10/svg-colors-in-opentype-fonts/
-* http://xerographer.github.io/reinebow/
-* http://xerographer.github.io/multicoloure/
+* https://xerographer.github.io/reinebow/
+* https://xerographer.github.io/multicoloure/
 
 [6]: https://www.w3.org/2013/10/SVG_in_OpenType/
 [7]: https://www.microsoft.com/typography/otspec/svg.htm
@@ -75,75 +75,74 @@ want to try them. Primary issues are the 0x2639 and 0x263a characters.
 [10]:https://bugzilla.mozilla.org/show_bug.cgi?id=1245811
 [11]:https://bugzilla.mozilla.org/show_bug.cgi?id=1266341
 
-### Manual install on any Linux
-Install for the current user without root:
-```sh
-# 1. Download the latest version
-wget https://github.com/eosrei/twemoji-color-font/releases/download/v11.2.0/TwitterColorEmoji-SVGinOT-Linux-11.2.0.tar.gz
-# 2. Uncompress the file
-tar zxf TwitterColorEmoji-SVGinOT-Linux-11.2.0.tar.gz
-# 3. Run the installer
-cd TwitterColorEmoji-SVGinOT-Linux-11.2.0
-./install.sh
-```
+<details>
+  <summary><b>Twemoji Color Font's specific parts</b> (Click to expand)</summary>
+  ### Manual install on any Linux
+  Install for the current user without root:
+  ```sh
+  # 1. Download the latest version
+  wget https://github.com/eosrei/twemoji-color-font/releases/download/v11.2.0/TwitterColorEmoji-SVGinOT-Linux-11.2.0.tar.gz
+  # 2. Uncompress the file
+  tar zxf TwitterColorEmoji-SVGinOT-Linux-11.2.0.tar.gz
+  # 3. Run the installer
+  cd TwitterColorEmoji-SVGinOT-Linux-11.2.0
+  ./install.sh
+  ```
 
-### Install on Ubuntu Linux
-Launchpad PPA: https://launchpad.net/~eosrei/+archive/ubuntu/fonts
+  ### Install on Ubuntu Linux
+  Launchpad PPA: https://launchpad.net/~eosrei/+archive/ubuntu/fonts
 
-```sh
-sudo apt-add-repository ppa:eosrei/fonts
-sudo apt-get update
-sudo apt-get install fonts-twemoji-svginot
-```
+  ```sh
+  sudo apt-add-repository ppa:eosrei/fonts
+  sudo apt-get update
+  sudo apt-get install fonts-twemoji-svginot
+  ```
 
-### Install on Arch Linux
-AUR package: https://aur.archlinux.org/packages/ttf-twemoji-color/
+  ### Install on Arch Linux
+  Available in [AUR](https://wiki.archlinux.org/index.php/Arch_User_Repository) as package [`ttf-twemoji-color`](https://aur.archlinux.org/packages/ttf-twemoji-color/).
 
-```sh
-yaourt -S ttf-twemoji-color
-```
+  ### Install on Gentoo Linux
+  Gentoo repository: https://github.com/jorgicio/jorgicio-gentoo
 
-### Install on Gentoo Linux
-Gentoo repository: https://github.com/jorgicio/jorgicio-gentoo
+  ```sh
+  # Install layman using Portage with USE="git" enabled, the default.
+  emerge layman
+  # Add the repo.
+  layman -a jorgicio
+  # Install the package.
+  emerge twemoji-color-font
+  ```
 
-```sh
-# Install layman using Portage with USE="git" enabled, the default.
-emerge layman
-# Add the repo.
-layman -a jorgicio
-# Install the package.
-emerge twemoji-color-font
-```
+  ## Install on OS X
+  Both SVGinOT versions are available from releases:
+  https://github.com/eosrei/twemoji-color-font/releases
 
-## Install on OS X
-Both SVGinOT versions are available from releases:
-https://github.com/eosrei/twemoji-color-font/releases
+  1. `TwitterColorEmoji-SVGinOT-11.2.0.zip` - The regular version of the font
+     installs like any other font and can be specifically selected, but OS X will
+     default to the `Apple Color Emoji` font for emojis.
+  2. `TwitterColorEmoji-SVGinOT-OSX-11.2.0.zip` - A hack to replace the `Apple
+     Color Emoji` font by [using the same internal name][12]. Install and accept
+     the warning in Font Book.
 
-1. `TwitterColorEmoji-SVGinOT-11.2.0.zip` - The regular version of the font
-   installs like any other font and can be specifically selected, but OS X will
-   default to the `Apple Color Emoji` font for emojis.
-2. `TwitterColorEmoji-SVGinOT-OSX-11.2.0.zip` - A hack to replace the `Apple
-   Color Emoji` font by [using the same internal name][12]. Install and accept
-   the warning in Font Book.
+  A [Homebrew](https://brew.sh) package is available.
 
-A [Homebrew](http://brew.sh) package is available.
+  ```sh
+  # Tap the caskroom/fonts keg, if needed.
+  brew tap caskroom/fonts
+  # Install the font using brew
+  brew cask install font-twitter-color-emoji
+  ```
 
-```sh
-# Tap the caskroom/fonts keg, if needed.
-brew tap caskroom/fonts
-# Install the font using brew
-brew cask install font-twitter-color-emoji
-```
+  [12]:https://www.macissues.com/2014/11/21/how-to-change-the-default-system-font-in-mac-os-x/
 
-[12]:http://www.macissues.com/2014/11/21/how-to-change-the-default-system-font-in-mac-os-x/
+  *Reiterating: Only FireFox supports the SVGinOT color emoji for now. Safari and
+  Chrome will use the fallback black and white emoji.*
 
-*Reiterating: Only FireFox supports the SVGinOT color emoji for now. Safari and
-Chrome will use the fallback black and white emoji.*
+  ## Install on Windows
 
-## Install on Windows
-
-There are two install options for Windows. Both SVGinOT versions are available
-from releases: https://github.com/eosrei/twemoji-color-font/releases
+  There are two install options for Windows. Both SVGinOT versions are available
+  from releases: https://github.com/eosrei/twemoji-color-font/releases
+</details>
 
 ### Standard install
 
