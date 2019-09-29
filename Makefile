@@ -21,7 +21,7 @@ WINDOWS_PACKAGE := build/$(FONT_PREFIX)-Win-$(VERSION)
 
 # There are two SVG source directories to keep the assets separate
 # from the additions
-SVG_BLOB := BlobStorage/svgs
+SVG_BLOB := BlobStorage/svg
 # Will be used later
 SVG_TWEMOJI := assets/twemoji-svg-empty
 
